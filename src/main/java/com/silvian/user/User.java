@@ -1,6 +1,7 @@
 package com.silvian.user;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by silvian on 04/06/2014.
@@ -11,7 +12,7 @@ public class User implements Serializable{
 
     private String lastname;
 
-    private Integer age;
+    private Date dob;
 
     private String street;
 
@@ -41,12 +42,16 @@ public class User implements Serializable{
         this.lastname = lastname;
     }
 
-    public Integer getAge() {
-        return age;
+    public Date getDob() {
+        return dob;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    public Integer getAge() {
+        return calculateAge();
     }
 
     public String getStreet() {
@@ -95,6 +100,19 @@ public class User implements Serializable{
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Integer calculateAge() {
+        Date dob = this.getDob();
+        int age;
+
+        if(dob != null) {
+            Date currentDate = new Date(System.currentTimeMillis());
+            age = currentDate.getYear() - dob.getYear();
+            return age;
+        }
+
+        return 0;
     }
 
 }

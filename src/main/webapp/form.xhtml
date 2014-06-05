@@ -27,8 +27,8 @@
                     <h:outputText value="Lastname: *" />
                     <p:inputText value="#{userWizard.user.lastname}" required="true" label="Lastname"/>
 
-                    <h:outputText value="Age: " />
-                    <p:inputText value="#{userWizard.user.age}" />
+                    <p:outputLabel for="button" value="Date of Birth: " />
+                    <p:calendar id="button" value="#{userWizard.user.dob}" showOn="button" />
 
                     <h:outputText value="Skip to last: " />
                     <h:selectBooleanCheckbox value="#{userWizard.skip}" />
@@ -83,6 +83,7 @@
 
                         <h:outputText value="Age: " />
                         <h:outputText value="#{userWizard.user.age}" styleClass="outputLabel"/>
+
                     </h:panelGrid>
 
                     <h:panelGrid columns="2" columnClasses="label, value">
