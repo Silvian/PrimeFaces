@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<h1>Hello World PrimeFaces</h1>
+
+	<h:form id="inputName" value="#{editor.value}">
+	<p:editor value="#{editor.value}" />
+        <h:commandButton value="Display">
+            <f:ajax execute="inputName" render="outputMessage" />
+        </h:commandButton>
+        <h2><h:outputText id="outputMessage"
+                          value="#{editor.value !=null ?
+            editor.value : ''}"
+                /></h2>
+    </h:form>
+
+    <h2>Please enter your name:</h2>
+    <h:form>
+        <h:inputText id="inputName" value="#{userData.name}"></h:inputText>
+        <h:commandButton value="Display Message">
+            <f:ajax execute="inputName" render="outputMessage" />
+        </h:commandButton>
+        <h2><h:outputText id="outputMessage"
+                          value="#{userData.welcomeMessage !=null ?
+            userData.welcomeMessage : ''}"/>
+        </h2>
+    </h:form>
+
+
+    <h:form>
+        <h:panelGrid columns="4" cellpadding="5">
+            <h:outputLabel for="name" value="Name:" style="font-weight:bold" />
+            <p:inputText id="name" value="#{basicView.text}" />
+            <p:commandButton value="Submit" update="display" icon="ui-icon-check" />
+            <h:outputText id="display" value="#{basicView.text}" />
+        </h:panelGrid>
+    </h:form>
+    <br/><br/>
+
+    <h:form enctype="multipart/form-data">
+        <p:growl id="messages" showDetail="true" />
+
+        <p:fileUpload value="#{fileUploadView.file}" />
+
+        <p:commandButton value="Submit" actionListener="#{fileUploadView.upload}"/>
+    </h:form>
+
+    <p:commandButton value="Next Page" action="form.xhtml"/>
+
+</h:body>
+</html>
