@@ -4,29 +4,25 @@ package com.silvian.user;
  * Created by silvian on 04/06/2014.
  */
 import java.io.Serializable;
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+
 import com.silvian.user.data.UserDataBean;
 import org.primefaces.event.FlowEvent;
 
 @ManagedBean(name = "userWizard")
-@SessionScoped
+@ViewScoped
 public class UserWizard implements Serializable {
 
     private User user = new User();
 
-    UserDataBean userDataBean = new UserDataBean();
+    @ManagedProperty(value = "#{userDataBean}")
+    private UserDataBean userDataBean;
 
     private boolean skip;
-
-    @PostConstruct
-    public void init() {
-        userDataBean.init();
-    }
 
     public User getUser() {
         return user;
@@ -38,6 +34,10 @@ public class UserWizard implements Serializable {
 
     public UserDataBean getUserDataBean() {
         return userDataBean;
+    }
+
+    public void setUserDataBean(UserDataBean userDataBean) {
+        this.userDataBean = userDataBean;
     }
 
     public void save() {

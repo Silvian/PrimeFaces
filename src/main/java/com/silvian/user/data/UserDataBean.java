@@ -22,7 +22,7 @@ public class UserDataBean implements Serializable {
     private List<User> userList;
 
     @PostConstruct
-    public void init() {
+     public void init() {
         userList = new ArrayList<User>();
     }
 

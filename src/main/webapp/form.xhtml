@@ -122,7 +122,7 @@
 <p:chart type="bar" model="#{chartView.barModel}" style="height:300px"/>
 
 
-<p:dataTable var="user" value="#{userWizard.userDataBean.userList}">
+<p:dataTable var="user" value="#{userDataBean.userList}">
     <p:column headerText="First Name">
         <h:outputText value="#{user.firstname}" />
     </p:column>
