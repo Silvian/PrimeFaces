@@ -122,23 +122,34 @@
 <p:chart type="bar" model="#{chartView.barModel}" style="height:300px"/>
 
 
-<p:dataTable var="user" value="#{userDataBean.userList}">
-    <p:column headerText="First Name">
-        <h:outputText value="#{user.firstname}" />
-    </p:column>
+<h:form>
 
-    <p:column headerText="Surname">
-        <h:outputText value="#{user.lastname}" />
-    </p:column>
+    <p:dataTable id="user-table" var="user" value="#{userDataBean.userList}">
 
-    <p:column headerText="Age">
-        <h:outputText value="#{user.age}" />
-    </p:column>
+        <p:column headerText="Select">
+            <input align="middle" type="checkbox" name="#{userDataBean.setDeleteUser(user)}" value="#{userDataBean.setDeleteUser(user)}"/>
+        </p:column>
 
-    <p:column headerText="Email">
-        <h:outputText value="#{user.email}" />
-    </p:column>
-</p:dataTable>
+        <p:column headerText="First Name">
+            <h:outputText value="#{user.firstname}" />
+        </p:column>
+
+        <p:column headerText="Surname">
+            <h:outputText value="#{user.lastname}" />
+        </p:column>
+
+        <p:column headerText="Age">
+            <h:outputText value="#{user.age}" />
+        </p:column>
+
+        <p:column headerText="Email">
+            <h:outputText value="#{user.email}" />
+        </p:column>
+    </p:dataTable>
+
+    <p:commandButton value="Delete" update="user-table" actionListener="#{userDataBean.deleteUser}" process="@this" icon="ui-icon-trash"/>
+
+</h:form>
 
 </body>
 </html>

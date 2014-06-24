@@ -20,6 +20,7 @@ public class UserDataBean implements Serializable {
     private static final long serialVersionUID= 1L;
 
     private List<User> userList;
+    private User deleteUser;
 
     @PostConstruct
      public void init() {
@@ -39,12 +40,20 @@ public class UserDataBean implements Serializable {
         userList.add(user);
     }
 
-    public boolean deleteUser(User user) {
-        return userList.remove(user);
+    public boolean deleteUser() {
+        return userList.remove(getDeleteUser());
     }
 
     public boolean userExists(User user) {
         return userList.contains(user);
+    }
+
+    public void setDeleteUser(User user) {
+        this.deleteUser = user;
+    }
+
+    public User getDeleteUser() {
+        return deleteUser;
     }
 
 
