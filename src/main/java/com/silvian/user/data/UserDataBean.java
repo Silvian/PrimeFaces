@@ -4,30 +4,48 @@ package com.silvian.user.data;
  * Created by silvian on 04/06/2014.
  */
 
+import com.silvian.user.User;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-@ManagedBean(name = "userData", eager = true)
+@ManagedBean(name = "userDataBean", eager = true)
 @SessionScoped
 public class UserDataBean implements Serializable {
 
     private static final long serialVersionUID= 1L;
-    private String name;
 
-    public UserDataBean() {
-        name = "";
+    private List<User> userList;
+
+    @PostConstruct
+    public void init() {
+        userList = new ArrayList<User>();
     }
 
-    public String getName() {
-        return name;
+    public List<User> getUserList() {
+        return userList;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
+
     }
 
-    public String getWelcomeMessage(){
-        return "Hello " + name;
+    public void addUser(User user) {
+        userList.add(user);
     }
+
+    public boolean deleteUser(User user) {
+        return userList.remove(user);
+    }
+
+    public boolean userExists(User user) {
+        return userList.contains(user);
+    }
+
+
 }

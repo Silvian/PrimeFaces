@@ -4,19 +4,29 @@ package com.silvian.user;
  * Created by silvian on 04/06/2014.
  */
 import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import com.silvian.user.data.UserDataBean;
 import org.primefaces.event.FlowEvent;
 
-@ManagedBean
-@ViewScoped
+@ManagedBean(name = "userWizard")
+@SessionScoped
 public class UserWizard implements Serializable {
 
     private User user = new User();
 
+    UserDataBean userDataBean = new UserDataBean();
+
     private boolean skip;
+
+    @PostConstruct
+    public void init() {
+        userDataBean.init();
+    }
 
     public User getUser() {
         return user;
@@ -26,7 +36,14 @@ public class UserWizard implements Serializable {
         this.user = user;
     }
 
+    public UserDataBean getUserDataBean() {
+        return userDataBean;
+    }
+
     public void save() {
+
+        userDataBean.addUser(user);
+
         FacesMessage msg = new FacesMessage("Successful", "Welcome : " + user.getFirstname() + " " + user.getLastname() +
                                             " You are: " + user.getAge() + " years old.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -49,4 +66,5 @@ public class UserWizard implements Serializable {
             return event.getNewStep();
         }
     }
+
 }

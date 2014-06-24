@@ -23,18 +23,7 @@
                 /></h2>
     </h:form>
 
-    <h2>Please enter your name:</h2>
-    <h:form>
-        <h:inputText id="inputName" value="#{userData.name}"></h:inputText>
-        <h:commandButton value="Display Message">
-            <f:ajax execute="inputName" render="outputMessage" />
-        </h:commandButton>
-        <h2><h:outputText id="outputMessage"
-                          value="#{userData.welcomeMessage !=null ?
-            userData.welcomeMessage : ''}"/>
-        </h2>
-    </h:form>
-
+    <div class="well">Look I'm a well</div>
 
     <h:form>
         <h:panelGrid columns="4" cellpadding="5">
